@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tap the jar and it hands you 1 small act of love to do today, whether you are together or miles apart. From an essay by Riya T I.">
+<meta name="author" content="Riya T I">
+<meta name="theme-color" content="#fdeaf0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#2a0f1c" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Small Acts Jar">
+<meta property="og:description" content="Tap the jar and it hands you 1 small act of love to do today, whether you are together or miles apart.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e0395a' d='M12 20C4 14 2 10 2 7.5 2 4.5 4.5 3 6.8 3 9 3 11 4.3 12 6.2 13 4.3 15 3 17.2 3 19.5 3 22 4.5 22 7.5 22 10 20 14 12 20Z'/%3E%3C/svg%3E">
+<title>The Small Acts Jar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;600&family=Kalam:wght@400;700&display=swap">
+<style>
+:root {
+  /* Layout: words on the left, the jar on a shelf on the right, one column on phones.
+     Sweet love colours: a blush page, wine-red ink, and notes in rose, lilac and peach,
+     with 1 colour for each kind of act (together, long distance, either way). */
+  --blush: #fdeaf0;
+  --shelf: #f2bfce;
+  --ink: #4a1530;
+  --ink-soft: #8a5266;
+  --heart: #e0395a;
+  --btn: #bf2349;
+  --btn-ink: #ffffff;
+  --rose: #ffc0d3;
+  --lilac: #e3cdf6;
+  --peach: #ffd8c0;
+  --label: #fff8f3;
+  --note-ink: #3d1023;
+  --glow: #ff86a6;
+  --glass: rgba(255, 255, 255, 0.5);
+  --shine: rgba(255, 255, 255, 0.9);
+  --font-display: "Caprasimo", "Cooper Black", Georgia, serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: "Kalam", "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --blush: #2a0f1c;
+    --shelf: #4d2336;
+    --ink: #fdeaf0;
+    --ink-soft: #d9aabb;
+    --heart: #ff6384;
+    --btn: #ff8fab;
+    --btn-ink: #2a0f1c;
+    --rose: #ffc0d3;
+    --lilac: #e3cdf6;
+    --peach: #ffd8c0;
+    --label: #fff3ea;
+    --note-ink: #3d1023;
+    --glow: #b8436a;
+    --glass: rgba(255, 255, 255, 0.1);
+    --shine: rgba(255, 255, 255, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --blush: #2a0f1c;
+  --shelf: #4d2336;
+  --ink: #fdeaf0;
+  --ink-soft: #d9aabb;
+  --heart: #ff6384;
+  --btn: #ff8fab;
+  --btn-ink: #2a0f1c;
+  --rose: #ffc0d3;
+  --lilac: #e3cdf6;
+  --peach: #ffd8c0;
+  --label: #fff3ea;
+  --note-ink: #3d1023;
+  --glow: #b8436a;
+  --glass: rgba(255, 255, 255, 0.1);
+  --shine: rgba(255, 255, 255, 0.5);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--blush);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 28px 20px 32px;
+  display: grid;
+  gap: 22px 40px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "head" "slip" "stage" "acts" "foot";
+}
+@media (min-width: 620px) {
+  .page {
+    padding-top: 44px;
+    grid-template-columns: minmax(0, 1fr) 270px;
+    grid-template-areas: "head stage" "slip stage" "acts stage" "foot foot";
+    align-items: start;
+  }
+}
+
+/* Words */
+.head { grid-area: head; }
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+}
+h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 9vw, 3.7rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* The note that has been handed over */
+.slip-wrap { grid-area: slip; perspective: 900px; }
+.slip {
+  --slip-paper: var(--peach);
+  max-width: 26rem;
+  min-height: 9.8rem;
+  padding: 16px 20px 24px;
+  color: var(--note-ink);
+  background-color: var(--slip-paper);
+  background-image:
+    linear-gradient(to right, transparent calc(50% - 1px), rgba(120, 20, 60, 0.12) 50%, transparent calc(50% + 1px)),
+    linear-gradient(to right, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 50%, rgba(120, 20, 60, 0.045) 50%, rgba(120, 20, 60, 0) 100%);
+  border-radius: 3px;
+  transform: rotate(-1.4deg);
+  transform-origin: 50% 0;
+  box-shadow: 0 1px 0 rgba(74, 21, 48, 0.1), 0 16px 26px -16px rgba(74, 21, 48, 0.55);
+}
+.slip-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 10px;
+  margin: 0 0 8px;
+}
+.slip-no {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+.slip-kind {
+  padding: 3px 10px;
+  border: 1.5px solid rgba(61, 16, 35, 0.45);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.slip-kind:empty { display: none; }
+.slip-text {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  line-height: 1.32;
+  text-wrap: pretty;
+}
+.slip.unfold { animation: unfold 0.55s cubic-bezier(0.2, 0.9, 0.25, 1.15) both; }
+@keyframes unfold {
+  from { transform: rotate(-1.4deg) rotateX(-86deg); opacity: 0.35; }
+  to { transform: rotate(-1.4deg) rotateX(0deg); opacity: 1; }
+}
+
+/* The jar on its shelf */
+.stage {
+  --rise: 84px;
+  grid-area: stage;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-self: end;
+  padding-top: 40px;
+}
+.glow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 260px;
+  height: 260px;
+  margin-left: -130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow) 0%, var(--glow) 18%, transparent 68%);
+  opacity: 0;
+  transform: translateY(80px) scale(0.7);
+  transition: opacity 1.1s ease, transform 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.warm .glow { opacity: 0.75; transform: translateY(0) scale(1); }
+
+.hint {
+  position: absolute;
+  left: calc(50% + 66px);
+  top: 4px;
+  margin: 0;
+  display: grid;
+  justify-items: start;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  transform: rotate(7deg);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.hint svg { width: 40px; height: 34px; margin-left: -6px; }
+.hint path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.warm .hint { opacity: 0; }
+
+.float-heart {
+  position: absolute;
+  left: 50%;
+  top: 36px;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  fill: var(--heart);
+  opacity: 0;
+  pointer-events: none;
+  animation: floatUp 1.05s ease-out forwards;
+}
+@keyframes floatUp {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  18% { opacity: 1; }
+  100% { transform: translate(var(--dx, 0px), calc(var(--rise) * -1)) scale(1.1) rotate(var(--turn, 0deg)); opacity: 0; }
+}
+
+.jar {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
+  width: min(228px, 62vw);
+  color: inherit;
+  cursor: pointer;
+  transform-origin: 50% 96%;
+  transition: transform 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.jar svg { display: block; width: 100%; height: auto; overflow: visible; }
+.jar:hover { transform: translateY(-3px) rotate(-1deg); }
+.jar:active { transform: scale(0.975); }
+.jar.shake { animation: shake 0.5s ease; }
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg); }
+  45% { transform: rotate(4deg); }
+  70% { transform: rotate(-2.5deg); }
+  100% { transform: rotate(0deg); }
+}
+.jar:focus-visible, .btn:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 5px;
+  border-radius: 14px;
+}
+
+.glass-fill { fill: var(--glass); }
+.glass-line { fill: none; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; }
+.rim { fill: var(--glass); stroke: var(--ink); stroke-width: 3.5; }
+.shine { fill: none; stroke: var(--shine); stroke-width: 6; stroke-linecap: round; }
+.shadow { fill: var(--ink); opacity: 0.13; }
+.tag { fill: var(--label); stroke: var(--note-ink); stroke-opacity: 0.5; stroke-width: 1.5; }
+.tag-text { font-family: var(--font-hand); font-weight: 700; font-size: 19px; fill: var(--note-ink); }
+.mini { stroke: var(--note-ink); stroke-opacity: 0.32; stroke-width: 1; }
+.mini-fold { fill: none; stroke: var(--note-ink); stroke-opacity: 0.28; stroke-width: 1; }
+.peek { transform-box: fill-box; transform-origin: 50% 50%; }
+.peek.fly { animation: fly 0.5s ease-in forwards; }
+.peek.rise { animation: rise 0.35s ease-out; }
+@keyframes fly {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-66px) rotate(14deg); opacity: 0; }
+}
+@keyframes rise {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.sill {
+  width: 100%;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 3px;
+  background: var(--shelf);
+}
+.count {
+  margin: 10px 0 0;
+  min-height: 2.9em;
+  max-width: 17rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Buttons */
+.acts { grid-area: acts; display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: center; }
+.btn {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 13px 20px;
+  border-radius: 999px;
+  border: 2px solid var(--btn);
+  cursor: pointer;
+  transition: transform 0.12s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-main { background: var(--btn); color: var(--btn-ink); }
+.btn-line { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.is-off { visibility: hidden; }
+
+.foot {
+  grid-area: foot;
+  padding-top: 16px;
+  border-top: 2px solid var(--shelf);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+.foot p { margin: 0; max-width: 62ch; }
+
+/* Compact layout for short frames, such as an embed inside a story */
+@media (max-height: 430px) {
+  .page {
+    padding: 10px 16px 12px;
+    gap: 8px 12px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "head head" "slip stage" "acts acts";
+    align-items: center;
+  }
+  .eyebrow, .foot, .hint, .count { display: none; }
+  h1 { font-size: clamp(1.2rem, 5.6vw, 1.6rem); line-height: 1.05; }
+  .slip { min-height: 0; max-width: none; padding: 8px 13px 11px; }
+  .slip-top { margin-bottom: 3px; gap: 3px 8px; }
+  .slip-no { font-size: 0.62rem; }
+  .slip-kind { padding: 1px 7px; font-size: 0.56rem; border-width: 1px; }
+  .slip-text { font-size: 1.04rem; line-height: 1.22; }
+  .stage { --rise: 44px; align-self: center; padding-top: 16px; }
+  .float-heart { top: 12px; width: 12px; height: 12px; margin-left: -6px; }
+  .jar { width: clamp(92px, 22vw, 104px); }
+  .glow { top: -4px; left: -15px; margin-left: 0; width: calc(100% + 30px); height: auto; aspect-ratio: 1; }
+  .sill { height: 6px; margin-top: -3px; }
+  .acts { gap: 8px; }
+  .btn { padding: 8px 13px; font-size: 0.84rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <header class="head">
+    <p class="eyebrow">From &ldquo;What Is Love, in All Honesty?&rdquo; by Riya T I</p>
+    <h1>The Small Acts Jar</h1>
+  </header>
+
+  <section class="slip-wrap" aria-live="polite">
+    <article class="slip" id="slip">
+      <div class="slip-top">
+        <p class="slip-no" id="slip-no">Before you start</p>
+        <span class="slip-kind" id="slip-kind"></span>
+      </div>
+      <p class="slip-text" id="slip-text">Tap the jar, and it will hand you 1 small act of noticing to do today, whether you are together or miles apart.</p>
+    </article>
+  </section>
+
+  <div class="stage" id="stage">
+    <div class="glow" aria-hidden="true"></div>
+    <p class="hint" aria-hidden="true">tap me
+      <svg viewBox="0 0 40 34" focusable="false"><path d="M32,2 C31,18 22,27 5,29"/><path d="M5,29 l10,-4 M5,29 l8,6"/></svg>
+    </p>
+    <button class="jar" id="jar" type="button" aria-label="Draw a note from the jar">
+      <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="inside">
+            <path d="M74,46 L166,46 C166,62 201,68 201,101 L201,251 C201,267 190,277 174,277 L66,277 C50,277 39,267 39,251 L39,101 C39,68 74,62 74,46 Z"/>
+          </clipPath>
+        </defs>
+        <ellipse class="shadow" cx="120" cy="284" rx="92" ry="9"/>
+        <g class="peek" id="peek">
+          <g transform="translate(120 30) rotate(-12)">
+            <rect class="mini" x="-19" y="-26" width="38" height="52" rx="2" style="fill: var(--rose)"/>
+            <path class="mini-fold" d="M-19,0 H19"/>
+          </g>
+        </g>
+        <path class="glass-fill" d="M74,46 L166,46 C166,62 201,68 201,101 L201,251 C201,267 190,277 174,277 L66,277 C50,277 39,267 39,251 L39,101 C39,68 74,62 74,46 Z"/>
+        <g id="pile" clip-path="url(#inside)"></g>
+        <g transform="rotate(-2 120 177)">
+          <rect class="tag" x="74" y="156" width="92" height="42" rx="5"/>
+          <text class="tag-text" x="120" y="184" text-anchor="middle">small acts</text>
+        </g>
+        <path class="glass-line" d="M74,46 L166,46 C166,62 201,68 201,101 L201,251 C201,267 190,277 174,277 L66,277 C50,277 39,267 39,251 L39,101 C39,68 74,62 74,46 Z"/>
+        <rect class="rim" x="62" y="28" width="116" height="20" rx="9"/>
+        <path class="shine" d="M54,112 V140"/>
+        <path class="shine" d="M54,214 V246"/>
+      </svg>
+    </button>
+    <div class="sill" aria-hidden="true"></div>
+    <p class="count" id="count">25 notes in the jar</p>
+  </div>
+
+  <div class="acts">
+    <button class="btn btn-main" id="draw" type="button">Hand me a note</button>
+    <button class="btn btn-line is-off" id="copy" type="button">Copy this act</button>
+  </div>
+
+  <footer class="foot">
+    <p>Do it today for someone you love, near or far, and then tell me in the comments how it went.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* k: t = together, l = long distance, e = works either way */
+  var ACTS = [
+    { k: "e", t: "Write them a letter by hand, then post it or leave it where they will find it." },
+    { k: "e", t: "Tell them your good news before you tell anyone else." },
+    { k: "e", t: "Tell them 1 quirky thing about them that you adore." },
+    { k: "e", t: "Ask them 1 question you have never asked before, and stay for the long answer." },
+    { k: "e", t: "Bring up something they told you weeks ago, so they know you were listening." },
+    { k: "e", t: "Tell them why you choose them, with all their ifs and buts." },
+    { k: "e", t: "Send them a song that reminds you of them, and tell them why." },
+    { k: "e", t: "Tell them 1 way they bring out the best version of you." },
+    { k: "e", t: "Let them be silly, goofy, tired or sad with you today, without trying to fix it." },
+    { k: "t", t: "If the sun is out, ask them to come for a walk in the park nearby." },
+    { k: "t", t: "Hold their hand a little longer than usual today." },
+    { k: "t", t: "Share 10 minutes of silence with them, and let it be a happy one." },
+    { k: "t", t: "Make their favourite tea or coffee before they ask for it." },
+    { k: "t", t: "Remember the cake they enjoyed, and bake it for them or bring a slice home." },
+    { k: "t", t: "Ask how their day was, and put your phone away while they answer." },
+    { k: "t", t: "Notice when they look tired, and take 1 small task off their hands." },
+    { k: "t", t: "Cook something easy together, and let them choose the music." },
+    { k: "l", t: "Send them a voice note, so they can hear you smile." },
+    { k: "l", t: "Go for a walk at the same time and stay on the phone, as if you were side by side." },
+    { k: "l", t: "Watch the same film at the same time, and text each other through it." },
+    { k: "l", t: "Order their favourite cake or meal to their door as a surprise." },
+    { k: "l", t: "Post them a postcard from your city, with 3 lines about your day." },
+    { k: "l", t: "Send them a photo of something that made you think of them." },
+    { k: "l", t: "Cook the same recipe on a video call, and eat together." },
+    { k: "l", t: "Plan 1 small thing for the next time you meet, and put a date on it." }
+  ];
+  var KINDS = {
+    t: { label: "Together", paper: "var(--rose)" },
+    l: { label: "Long distance", paper: "var(--lilac)" },
+    e: { label: "Either way", paper: "var(--peach)" }
+  };
+
+  /* Where each folded note rests in the jar: x, y, tilt, colour. Bottom row first. */
+  var SPOTS = [
+    [61, 260, -10, 0], [99, 262, 6, 1], [137, 259, -3, 2], [175, 261, 12, 0],
+    [68, 240, 9, 1], [106, 241, -14, 2], [143, 239, 4, 0], [179, 241, -7, 1],
+    [60, 219, -5, 2], [97, 220, 13, 0], [135, 218, -9, 1], [173, 220, 7, 2],
+    [66, 198, 15, 0], [104, 199, -6, 1], [141, 197, 10, 2], [178, 199, -12, 0],
+    [61, 177, -8, 1], [99, 178, 5, 2], [139, 176, -4, 0], [176, 178, 11, 1]
+  ];
+  var TONES = ["var(--rose)", "var(--lilac)", "var(--peach)"];
+  var SVG_NS = "http://www.w3.org/2000/svg";
+  var HEART = "M12 20 C4 14 2 10 2 7.5 C2 4.5 4.5 3 6.8 3 C9 3 11 4.3 12 6.2 C13 4.3 15 3 17.2 3 C19.5 3 22 4.5 22 7.5 C22 10 20 14 12 20 Z";
+
+  var root = document.documentElement;
+  var stage = document.getElementById("stage");
+  var jar = document.getElementById("jar");
+  var drawBtn = document.getElementById("draw");
+  var copyBtn = document.getElementById("copy");
+  var slip = document.getElementById("slip");
+  var slipNo = document.getElementById("slip-no");
+  var slipKind = document.getElementById("slip-kind");
+  var slipText = document.getElementById("slip-text");
+  var count = document.getElementById("count");
+  var pile = document.getElementById("pile");
+  var peek = document.getElementById("peek");
+
+  var still = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var busy = false;
+  var copyTimer = 0;
+  var state = { order: [], pos: 0, current: -1 };
+
+  function shuffle(avoidFirst) {
+    var a = ACTS.map(function (_, i) { return i; });
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    if (a[0] === avoidFirst && a.length > 1) { a.push(a.shift()); }
+    return a;
+  }
+
+  function left() { return state.order.length - state.pos; }
+
+  function paintPile() {
+    var n = Math.min(left(), SPOTS.length);
+    while (pile.firstChild) { pile.removeChild(pile.firstChild); }
+    for (var i = 0; i < n; i++) {
+      var s = SPOTS[i];
+      var g = document.createElementNS(SVG_NS, "g");
+      g.setAttribute("transform", "translate(" + s[0] + " " + s[1] + ") rotate(" + s[2] + ")");
+      var r = document.createElementNS(SVG_NS, "rect");
+      r.setAttribute("class", "mini");
+      r.setAttribute("x", "-17"); r.setAttribute("y", "-12");
+      r.setAttribute("width", "34"); r.setAttribute("height", "24"); r.setAttribute("rx", "1.5");
+      r.style.fill = TONES[s[3]];
+      var f = document.createElementNS(SVG_NS, "path");
+      f.setAttribute("class", "mini-fold");
+      f.setAttribute("d", "M-17,0 H17");
+      g.appendChild(r); g.appendChild(f);
+      pile.appendChild(g);
+    }
+    peek.style.visibility = left() > 0 ? "visible" : "hidden";
+  }
+
+  function paintCount(refilled) {
+    var n = left();
+    if (state.current < 0) {
+      count.textContent = n + " notes in the jar";
+    } else if (n === 0) {
+      count.textContent = "That was the last note. Tap again and I will refill the jar.";
+    } else {
+      count.textContent = (refilled ? "You emptied the jar, so I filled it again. " : "") +
+        n + (n === 1 ? " note left in the jar" : " notes left in the jar");
+    }
+  }
+
+  function paintSlip() {
+    if (state.current < 0) { return; }
+    var act = ACTS[state.current];
+    var kind = KINDS[act.k];
+    slipNo.textContent = "Note " + (state.current + 1) + " of " + ACTS.length;
+    slipKind.textContent = kind.label;
+    slipText.textContent = act.t;
+    slip.style.setProperty("--slip-paper", kind.paper);
+    drawBtn.textContent = "Hand me another";
+    copyBtn.textContent = "Copy this act";
+    copyBtn.classList.remove("is-off");
+    root.classList.add("warm");
+  }
+
+  function hearts() {
+    var drift = [[-28, -18, 0], [5, 10, 110], [30, 22, 220]];
+    drift.forEach(function (d) {
+      var svg = document.createElementNS(SVG_NS, "svg");
+      svg.setAttribute("class", "float-heart");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("aria-hidden", "true");
+      svg.style.setProperty("--dx", d[0] + "px");
+      svg.style.setProperty("--turn", d[1] + "deg");
+      svg.style.animationDelay = d[2] + "ms";
+      var p = document.createElementNS(SVG_NS, "path");
+      p.setAttribute("d", HEART);
+      svg.appendChild(p);
+      stage.appendChild(svg);
+      window.setTimeout(function () { if (svg.parentNode) { svg.parentNode.removeChild(svg); } }, 1500);
+    });
+  }
+
+  function reveal(refilled) {
+    paintSlip();
+    paintPile();
+    paintCount(refilled);
+    if (!still) {
+      slip.classList.remove("unfold");
+      void slip.offsetWidth;
+      slip.classList.add("unfold");
+      hearts();
+    }
+  }
+
+  function draw() {
+    if (busy) { return; }
+    var refilled = false;
+    if (left() === 0) {
+      refilled = state.current >= 0;
+      state.order = shuffle(state.current);
+      state.pos = 0;
+    }
+    state.current = state.order[state.pos];
+    state.pos += 1;
+
+    if (still) { reveal(refilled); return; }
+
+    busy = true;
+    jar.classList.remove("shake");
+    void jar.offsetWidth;
+    jar.classList.add("shake");
+    peek.classList.remove("rise");
+    peek.classList.add("fly");
+    window.setTimeout(function () { reveal(refilled); }, 360);
+    window.setTimeout(function () {
+      peek.classList.remove("fly");
+      if (left() > 0) { peek.classList.add("rise"); }
+      jar.classList.remove("shake");
+      busy = false;
+    }, 620);
+  }
+
+  function copyAct() {
+    if (state.current < 0) { return; }
+    var text = "My small act of love for today: “" + ACTS[state.current].t +
+      "” From The Small Acts Jar by Riya T I.";
+    function done(ok) {
+      copyBtn.textContent = ok ? "Copied" : "Press and hold the note to copy it";
+      window.clearTimeout(copyTimer);
+      copyTimer = window.setTimeout(function () { copyBtn.textContent = "Copy this act"; }, 2400);
+    }
+    function fallback() {
+      try {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        done(ok);
+      } catch (e) { done(false); }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  function start(data) {
+    var ok = data && Array.isArray(data.order) && data.order.length === ACTS.length &&
+      typeof data.pos === "number" && data.pos >= 0 && data.pos <= ACTS.length;
+    if (ok) {
+      state = { order: data.order.slice(), pos: data.pos, current: typeof data.current === "number" ? data.current : -1 };
+    } else {
+      state = { order: shuffle(-1), pos: 0, current: -1 };
+    }
+    paintSlip();
+    paintPile();
+    paintCount(false);
+  }
+
+  jar.addEventListener("click", draw);
+  drawBtn.addEventListener("click", draw);
+  copyBtn.addEventListener("click", copyAct);
+
+  var hot = window.claude && window.claude.hot;
+  if (hot && hot.snapshot) { hot.snapshot(function () { return state; }); }
+  if (hot && hot.ready) { hot.ready(start); } else { start((hot && hot.data) || {}); }
+})();
+</script>
+</body>
+</html>
